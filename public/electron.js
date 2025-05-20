@@ -83,11 +83,11 @@ function createWindow() {
   if (mainWindow === null) {
     // Create main window completely hidden
     const options = {
-      width: 900,
-      height: 400,
+      width: 1200,
+      height: 800,
       show: false,
       frame: true,
-      resizable: false,
+      resizable: true,
       autoHideMenuBar: true,
       webPreferences: {
         contextIsolation: true,
@@ -104,6 +104,8 @@ function createWindow() {
     }
 
     mainWindow = new BrowserWindow(options);
+
+    mainWindow.maximize();
 
     // Load the URL
     mainWindow.loadURL(

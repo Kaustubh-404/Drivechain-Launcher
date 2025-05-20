@@ -1,4 +1,4 @@
-/* Main container */
+Main container
 .container {
   width: 100%;
   height: calc(var(--window-height) - 24px);
@@ -7,10 +7,14 @@
   padding-top: 18px;
   padding-bottom: 5px;
   box-sizing: border-box;
+  background-color: var(--bg-color, #f9fafb);
+  color: var(--text-color, #111827);
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .containerWithQuotes {
-  composes: container;
   padding-bottom: 60px; /* Add padding for quote ribbon */
 }
 
@@ -20,30 +24,39 @@
   max-width: var(--window-width);
   margin: 0 auto var(--base-spacing);
   box-sizing: border-box;
+  background-color: var(--card-bg, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color, #e5e7eb);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Add margin to the last chain section
-.chainSection:last-child {
-  margin-bottom: calc(var(--base-spacing) * 2);
-} */
+.chainSection:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
 .chainHeading {
   font-size: calc(var(--base-font-size) * 1.1);
   font-weight: bold;
-  padding: 0;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-color, #e5e7eb);
+  background-color: var(--header-bg, #f9fafb);
 }
 
 .l1ChainHeading {
-  composes: chainHeading;
-  margin: var(--base-spacing) 0 0 0;
+  margin: 0;
+  color: var(--title-color, #111827);
 }
 
 .l2ChainHeading {
-  composes: chainHeading;
-  margin: calc(var(--base-spacing) * 0.25) 0;
+  margin: 0;
+  font-size: calc(var(--base-font-size) * 1.05);
+  background-color: var(--subheader-bg, #f3f4f6);
 }
 
 /* Chain lists */
@@ -53,8 +66,9 @@
   flex-direction: column;
   gap: var(--base-spacing);
   margin: 0;
-  padding: 0;
+  padding: 16px;
   width: 100%;
+  background-color: var(--card-bg, #ffffff);
 }
 
 .l1Chains {
@@ -65,6 +79,14 @@
   width: 100%;
   margin: 0;
   box-sizing: border-box;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color, #e5e7eb);
+  transition: background-color 0.2s ease;
+}
+
+.l2Chains > div:hover {
+  background-color: var(--hover-bg, #f9fafb);
 }
 
 /* Loading state */
@@ -73,26 +95,75 @@
   justify-content: center;
   align-items: center;
   height: calc(var(--window-height) - 24px);
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--bg-color, #f9fafb);
+  color: var(--text-color, #111827);
 }
 
 .loadingContent {
   text-align: center;
   padding: var(--base-spacing);
+  background-color: var(--card-bg, #ffffff);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color, #e5e7eb);
+  max-width: 300px;
 }
 
 .loadingSpinner {
-  width: 24px;
-  height: 24px;
-  border: 3px solid var(--card-bg);
-  border-top: 3px solid var(--download-btn);
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--spinner-track, #e5e7eb);
+  border-top: 3px solid var(--primary-color, #3b82f6);
   border-radius: 50%;
   margin: var(--base-spacing) auto;
-  animation: spin 1s linear infinite;
+  animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .container {
+    --bg-color: #111827;
+    --text-color: #f9fafb;
+    --border-color: #374151;
+    --card-bg: #1f2937;
+    --header-bg: #1f2937;
+    --subheader-bg: #111827;
+    --hover-bg: #374151;
+    --title-color: #f3f4f6;
+    --spinner-track: #374151;
+    --primary-color: #3b82f6;
+  }
+
+  .chainSection {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .chainSection:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .loadingContent {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .chainSection {
+    margin-bottom: calc(var(--base-spacing) * 1.5);
+  }
 }

@@ -17,6 +17,11 @@ import QuoteWidget from './components/QuoteWidget';
 import ShutdownModal from './components/ShutdownModal';
 import DownloadInProgressModal from './components/DownloadInProgressModal';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import MultiChainExplorer from './components/MultiChainExplorer';
+import CrossChainTransfer from './components/crosschaintransfer';
+import TransactionHistory from './components/TransactionHistory';
+import ChainHealthMonitor from './components/chainhealth';
+
 
 function AppContent() {
   const { isDarkMode } = useTheme();
@@ -82,6 +87,10 @@ function AppContent() {
           <Route path="/chains" element={<Nodes />} />
           <Route path="/wallet" element={<WalletModal />} />
           <Route path="/fast-withdrawal" element={<FastWithdrawalModal />} />
+          <Route path="/explorer" element={<MultiChainExplorer />} />
+          <Route path="/1" element={<CrossChainTransfer />} />
+          <Route path="/2" element={<TransactionHistory />} />
+          <Route path="/3" element={<ChainHealthMonitor />} />
         </Routes>
         <FaucetModal />
         <SettingsModal onResetComplete={() => setShowWelcomeModal(true)} />
@@ -89,7 +98,7 @@ function AppContent() {
           isOpen={showWelcomeModal}
           onClose={() => setShowWelcomeModal(false)}
         />
-        <QuoteWidget />
+        {/* <QuoteWidget /> */}
         <ShutdownModal />
         <DownloadInProgressModal
           downloads={activeDownloads}

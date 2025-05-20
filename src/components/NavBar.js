@@ -13,11 +13,23 @@ const NavBar = () => {
         <NavLink to="/chains" className={styles.navLink}>
           Chains
         </NavLink>
+        <NavLink to="/explorer" className={styles.navLink}>
+          Explorer
+        </NavLink>
         <NavLink to="/wallet" className={styles.navLink}>
           Wallet
         </NavLink>
         <NavLink to="/fast-withdrawal" className={styles.navLink}>
           Fast Withdrawal
+        </NavLink>
+        <NavLink to="/1" className={styles.navLink}>
+          CrossChain Transfer
+        </NavLink>
+        <NavLink to="/2" className={styles.navLink}>
+          History
+        </NavLink>
+        <NavLink to="/3" className={styles.navLink}>
+          Chain Health
         </NavLink>
       </div>
       <div className={styles.iconContainer}>
